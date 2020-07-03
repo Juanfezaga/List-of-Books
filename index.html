@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Library</title>
+</head>
+<body>
+    <div id="main">
+        <span>Add a Book to our Library</span>
+        <br>
+        <button id="button-show">Add Book</button>
+        <div class="hide-menu" id="menu">
+            <label for="title">Title of the Book</label>
+            <input type="text" class="title" name="title" placeholder="Title" required>
+            <label for="author">Author of the Book</label>
+            <input type="text" class="author" name ="author" placeholder="Author" required>
+            <label for="pages">Pages</label>
+            <input type="number" name="pages" class="pages" required>
+            <div class="radio-menu">
+                <label for="read">Do you read it?</label>
+                <label for="NO">NO </label>
+                <input type="radio" name="choice"  class="no-read" value="No">
+                <label for="YES">YES</label>
+                <input type="radio" name="choice" class="read" value="Yes" checked="checked">
+            </div>
+            <button type="submit" id="btn-add">Add Book</button>
+        </div>
+
+        <section>
+            <button id="show-list">ShowResults</button>
+            <h2>Table of Books</h2>
+            <table id="list-books">
+                <tr>
+                    <th>Numero</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>READ?</th>
+                </tr>
+
+            </table>
+        </section>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
