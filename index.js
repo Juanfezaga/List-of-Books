@@ -1,4 +1,4 @@
-const displayMenu = document.querySelector("#button-show")
+
 const myLibrary = []
 const addBtn = document.querySelector("#btn-add")
 var counter = 1
@@ -21,17 +21,47 @@ Book.prototype.addBook = function (){
 }
 
 
-displayMenu.addEventListener("click", ()=>{
-    const hideMenu = document.querySelector(".hide-menu") 
-    if (hideMenu.style.display === "none") {
-        hideMenu.style.display = "flex"
-    } else {
-            hideMenu.style.display = "none"
+const tableBody = document.querySelector("#body-rows")
+//const rowBody = document.querySelector("TR")
+function removeRows(){
+    while(tableBody.firstChild){
+        tableBody.removeChild(tableBody.lastChild)
     }
+}
+
+function render(myLibrary){
+    removeRows()
+    myLibrary.forEach(book => {
+        const newRow = document.createElement("TR")
+        newRow.setAttribute("data-index", `${myLibrary.indexOf(book)}`)
+        tableBody.appendChild(newRow)
+        const deleteRow = document.createElement("TD")
+        const deleteButton = document.createElement("button")
+        deleteButton.innerText = "Delete Book"
+        for(data in book){
+            let referenceBook = document.createElement("TD")
+            referenceBook.innerText = book[data]
+            newRow.appendChild(referenceBook)
+        }
+        deleteRow.appendChild(deleteButton)
+        newRow.appendChild(deleteRow)
+
+        deleteButton.addEventListener('click', () => {
+            myLibrary.splice(book, 1)
+            newRow.parentNode.removeChild(newRow)
+            console.log(myLibrary)
+        })    
+    })
+    
+}
+
+const displayMenu = document.querySelector("#button-show")
+const hideMenu = document.querySelector("#menu")
+displayMenu.addEventListener("click", ()=>{
+    (hideMenu.style.display === "none")?hideMenu.style.display="flex":hideMenu.style.display = "none";
 })
 
 addBtn.addEventListener('click', ()=>{
-    
     const BookTitle = document.querySelector(".title")
     const BookAuthor = document.querySelector(".author")
     const BookPages = document.querySelector(".pages")
@@ -42,31 +72,12 @@ addBtn.addEventListener('click', ()=>{
         let newBook = new Book(counter,BookTitle.value, BookAuthor.value, BookPages.value, "No")
         newBook.addBook()
         counter++
-        console.log(myLibrary)
+        render(myLibrary)
     }else if(valueRadio2.checked){
         let newBook = new Book(counter, BookTitle.value, BookAuthor.value, BookPages.value, "Yes")
         newBook.addBook()
         counter++
+        render(myLibrary)
     }
     
-})
-
-
-
-
-const showList = document.querySelector("#show-list")
-
-showList.addEventListener("click", () => {
-
-
-    myLibrary.forEach(book => {
-        const tableList = document.querySelector("#list-books")
-        const newRow = document.createElement("TR")
-        tableList.appendChild(newRow)
-        for(data in book){
-            let referenceBook = document.createElement("TD")
-            referenceBook.innerText = book[data]
-            newRow.appendChild(referenceBook)
-        }
-    })
 })

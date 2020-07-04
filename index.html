@@ -11,7 +11,7 @@
         <span>Add a Book to our Library</span>
         <br>
         <button id="button-show">Add Book</button>
-        <div class="hide-menu" id="menu">
+        <div class="hide-menu" id="menu" style="display: none;">
             <label for="title">Title of the Book</label>
             <input type="text" class="title" name="title" placeholder="Title" required>
             <label for="author">Author of the Book</label>
@@ -29,17 +29,19 @@
         </div>
 
         <section>
-            <button id="show-list">ShowResults</button>
             <h2>Table of Books</h2>
             <table id="list-books">
-                <tr>
+                <thead>
                     <th>Numero</th>
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Pages</th>
                     <th>READ?</th>
-                </tr>
+                    <th>Delete Book</th>
+                </thead>
+                <tbody id="body-rows">
 
+                </tbody>
             </table>
         </section>
     </div>
